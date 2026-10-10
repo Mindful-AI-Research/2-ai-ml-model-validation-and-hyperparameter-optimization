@@ -73,6 +73,24 @@
 
 <br><br>
 
+
+<!-- ========= START MASTER PRESENTATION BADGE ========= -->
+<p align="center">
+  <a href="https://frabjous-bunny-087328.netlify.app/">
+    <img
+      src="https://img.shields.io/badge/INTERACTIVE%20PRESENTATION-Model%20Validation%20%26%20Hyperparameter%20Optimization-0f766e?style=for-the-badge&logo=netlify&logoColor=white&labelColor=022c22"
+      alt="Interactive Presentation — Cross-Validation, Nested CV, Grid Search, Random Search and AutoML"
+      height="48"
+    />
+  </a>
+</p>
+
+<br>
+
+<!-- ========= END MASTER PRESENTATION BADGE ========= -->
+
+
+
 <p align="center">
   <a href="https://astounding-marzipan-63764d.netlify.app/"><img src="https://img.shields.io/badge/Cross%20Validation%20%C2%B7%20Interactive-0f766e?style=for-the-badge&amp;labelColor=022c22" alt="Cross Validation · Interactive" /></a>
   <a href="https://astonishing-dodol-818e9f.netlify.app/"><img src="https://img.shields.io/badge/Nested%20Cross%20Validation-134e4a?style=for-the-badge&amp;labelColor=022c22" alt="Nested Cross Validation" /></a>

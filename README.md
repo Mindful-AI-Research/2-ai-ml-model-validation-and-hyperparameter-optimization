@@ -145,6 +145,19 @@ https://github.com/user-attachments/assets/79b46aa5-38d9-4ab6-8eca-96a3dc6de0b9
 
 <br><br>
 
+## [Repository Identity]()
+
+This is a multi-class repository covering Classes 06–09, not Class 13. The Class 07 source contains inconsistent Class 13 badges and naming; its module identity here follows its title and referenced Class 07 notebook. No GitHub repository has been created remotely.
+
+<br>
+
+> [!NOTE}
+> Cross-validation, nested CV, grid/random search and AutoML: leakage-safe evaluation, hyperparameter selection and interactive class presentations.
+
+
+<br><br>
+
+
 ## [Overview]()
 
 This integrated learning repository connects four complementary questions:

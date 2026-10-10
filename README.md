@@ -254,7 +254,7 @@ All four presentation URLs were supplied by the author. Retrieval failed during 
   
 #
  
-##### <p align="center">Copyright 2026 Mindful-AI-Assistants. Code released under the  [MIT license.]()
+##### <p align="center">Copyright 2026 Mindful-AI-Assistants. Code released under the  [MIT license.](https://github.com/Mindful-AI-Research/2-ai-ml-model-validation-and-hyperparameter-optimization/blob/e7d754e4483af3a39861757892e4ad0662fc1060/LICENSE)
 
 
 

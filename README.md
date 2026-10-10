@@ -74,29 +74,32 @@
 <br><br>
 
 
-<!-- ========= START MASTER PRESENTATION BADGE ========= -->
 <p align="center">
   <a href="https://frabjous-bunny-087328.netlify.app/">
-    <img
-      src="https://img.shields.io/badge/INTERACTIVE%20PRESENTATION-Model%20Validation%20%26%20Hyperparameter%20Optimization-0f766e?style=for-the-badge&logo=netlify&logoColor=white&labelColor=022c22"
-      alt="Interactive Presentation — Cross-Validation, Nested CV, Grid Search, Random Search and AutoML"
-      height="48"
-    />
+    <img src="https://img.shields.io/badge/INTERACTIVE%20PRESENTATION-Model%20Validation%20%26%20Hyperparameter%20Optimization-0f172a?style=for-the-badge&amp;logo=netlify&amp;logoColor=white" alt="Integrated Interactive Presentation" height="48" />
   </a>
 </p>
 
 <br>
 
-<!-- ========= END MASTER PRESENTATION BADGE ========= -->
-
-
+<p align="center">
+  <a href="https://astounding-marzipan-63764d.netlify.app/">
+    <img src="https://img.shields.io/badge/Cross%20Validation-Interactive-0f766e?style=for-the-badge&amp;logo=react&amp;logoColor=white" alt="Cross Validation · Interactive" height="32" />
+  </a>
+  <a href="https://astonishing-dodol-818e9f.netlify.app/">
+    <img src="https://img.shields.io/badge/Nested-Cross%20Validation-134e4a?style=for-the-badge&amp;logo=react&amp;logoColor=white&amp;labelColor=022c22" alt="Nested Cross Validation" height="32" />
+  </a>
+</p>
 
 <p align="center">
-  <a href="https://astounding-marzipan-63764d.netlify.app/"><img src="https://img.shields.io/badge/Cross%20Validation%20%C2%B7%20Interactive-0f766e?style=for-the-badge&amp;labelColor=022c22" alt="Cross Validation · Interactive" /></a>
-  <a href="https://astonishing-dodol-818e9f.netlify.app/"><img src="https://img.shields.io/badge/Nested%20Cross%20Validation-134e4a?style=for-the-badge&amp;labelColor=022c22" alt="Nested Cross Validation" /></a>
-  <a href="https://lively-halva-00f14e.netlify.app/"><img src="https://img.shields.io/badge/Hyperparameter%20Search%20%C2%B7%20Grid%20Search-124050?style=for-the-badge&amp;labelColor=022c22" alt="Hyperparameter Search · Grid Search" /></a>
-  <a href="https://taupe-tarsier-591729.netlify.app/"><img src="https://img.shields.io/badge/Random%20Search%20and%20AutoML-14532d?style=for-the-badge&amp;labelColor=022c22" alt="Random Search and AutoML" /></a>
+  <a href="https://lively-halva-00f14e.netlify.app/">
+    <img src="https://img.shields.io/badge/Hyperparameter%20Search-Grid%20Search-0f766e?style=for-the-badge&amp;logo=react&amp;logoColor=white" alt="Hyperparameter Search · Grid Search" height="32" />
+  </a>
+  <a href="https://taupe-tarsier-591729.netlify.app/">
+    <img src="https://img.shields.io/badge/Random%20Search-AutoML-134e4a?style=for-the-badge&amp;logo=react&amp;logoColor=white&amp;labelColor=022c22" alt="Random Search and AutoML" height="32" />
+  </a>
 </p>
+
 
 
 <br><br>

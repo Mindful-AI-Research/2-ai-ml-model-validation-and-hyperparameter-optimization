@@ -185,6 +185,83 @@ All four presentation URLs were supplied by the author. Retrieval failed during 
 ## [Learning Path]()
 
 
+<br>
+
+| Order | Module | Main tools | Main outcome |
+|---|---|---|---|
+| 1 | [Class 06](docs/modules/class-06-cross-validation.md) | `cross_val_score`, KFold, stratified, repeated, group and temporal splitters | A data-appropriate validation scheme |
+| 2 | [Class 07](docs/modules/class-07-nested-cv.md) | SVC pipeline, inner GridSearchCV, outer StratifiedKFold | Audit of the complete selection process |
+| 3 | [Class 08](docs/modules/class-08-grid-search.md) | Logistic Regression, GridSearchCV, Average Precision | Systematic tuning with a protected final test |
+| 4 | [Class 09](docs/modules/class-09-random-search-automl.md) | RandomizedSearchCV and sampling distributions; conceptual AutoML | Budgeted search and automation boundaries |
+Class 07 precedes Class 08 pedagogically: nested evaluation is an evaluation design, while the later grid-search laboratory studies the search mechanism in a different task.
+
+<br><br>
+
+## [Cross-Validation and Splitter Selection]()
+
+Cross-validation fits fresh estimators across training/validation rotations and aggregates held-out scores. The correct splitter must resemble the intended prediction setting.
+
+
+<br>
+
+| Data structure | Relevant splitter | What it protects |
+|---|---|---|
+| Independent observations | KFold | Multiple development partitions |
+| Classification with class imbalance | StratifiedKFold | Approximate class proportions |
+| Repeated measurements of entities | GroupKFold | Entities remain disjoint across train/validation |
+| Ordered observations predicting the future | TimeSeriesSplit | Training precedes validation |
+| Repeated shuffled classification estimates | RepeatedStratifiedKFold | Multiple viable fold assignments |
+| Very small dataset | LeaveOneOut, when justified | One observation held out per round |
+
+
+<br>
+
+Stratification does not create rare-class observations. Choosing the number of folds should account for the least frequent class and the requirements of the scoring metric. Group and temporal examples must use genuine groups and timestamps, not invented fields.
+
+Fold-score standard deviation describes dispersion across the observed folds. It is not automatically a standard error or a confidence interval: folds share training data and are not independent measurements.
+
+<br><br>
+
+## [Nested Cross-Validation]()
+
+Selecting the largest among noisy validation scores creates selection optimism, called the winner’s curse in the Class 07 material. `best_score_` is a selection statistic, not an independent generalization estimate.
+
+In each outer round:
+
+1. Keep the outer validation fold completely outside tuning.
+2. Run an inner search on the outer training partition.
+3. Refit the selected pipeline on that training partition.
+4. Score the pipeline on the untouched outer fold.
+
+Aggregate the outer scores to evaluate the selection-and-training procedure. Different outer rounds may select different hyperparameters; nested CV does not produce a uniquely privileged final model. After auditing, run the chosen search on all development data for the final fitted estimator. Keep a final holdout protected if one is part of the protocol.
+
+<br><br>
+
+## [Grid Search and the Music Laboratory]()
+
+Class 08 reports a music-hit classifier using `5_musicas.csv`, with approximately 12.2% positives. The target is `hit`. Identifiers and `popularidade` are removed; the source identifies popularity as leakage because it almost determines the target.
+
+The reported pipeline combines StandardScaler and LogisticRegression. It searches:
+
+<br>
+
+```python
+grid = {
+    "clf__C": [0.01, 0.1, 1, 10, 100],
+    "clf__class_weight": [None, "balanced"],
+}
+```
+
+
+<br>
+
+Ten candidates with five folds require 50 CV fits, plus the final refit when enabled. Hyperparameter names use `step__parameter` to address the pipeline classifier.
+
+The original workflow uses `pd.get_dummies` before the train/test split. This is documented rather than silently rewritten as fold-local encoding. Recommended improvement: use a fitted encoder inside a ColumnTransformer/Pipeline, with explicit unseen-category handling. The source’s scaler is already inside the pipeline.
+
+<br><br>
+
+## [Random Search and AutoML]()
 
 
 
@@ -221,8 +298,11 @@ All four presentation URLs were supplied by the author. Retrieval failed during 
 
 
 
-
-
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
 <br><br>
 <br><br>
 <br><br>

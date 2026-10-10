@@ -76,13 +76,6 @@
   <a href="https://frabjous-bunny-087328.netlify.app/">
     <img src="https://img.shields.io/badge/INTERACTIVE%20PRESENTATION-Model%20Validation%20%26%20Hyperparameter%20Optimization-0f172a?style=for-the-badge&amp;logo=netlify&amp;logoColor=white" alt="Integrated Interactive Presentation" height="48" />
   </a>
-</p>
-<!-- ========= END MASTER PRESENTATION BADGE ========= -->
-
-<br>
-
-<!-- ========= START INDIVIDUAL PRESENTATION BADGES ========= -->
-<p align="center">
   <a href="https://astounding-marzipan-63764d.netlify.app/"><img src="https://img.shields.io/badge/Cross%20Validation-Interactive-0f766e?style=for-the-badge&amp;logo=react&amp;logoColor=white" alt="Cross Validation · Interactive" height="32" /></a>
   <a href="https://astonishing-dodol-818e9f.netlify.app/"><img src="https://img.shields.io/badge/Nested-Cross%20Validation-134e4a?style=for-the-badge&amp;logo=react&amp;logoColor=white&amp;labelColor=022c22" alt="Nested Cross Validation" height="32" /></a>
   <a href="https://lively-halva-00f14e.netlify.app/"><img src="https://img.shields.io/badge/Hyperparameter%20Search-Grid%20Search-0f766e?style=for-the-badge&amp;logo=react&amp;logoColor=white" alt="Hyperparameter Search · Grid Search" height="32" /></a>

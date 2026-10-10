@@ -1,0 +1,26 @@
+{
+  "name": "ai-ml-model-validation-and-hyperparameter-optimization",
+  "about": "Cross-validation, nested CV, grid/random search and AutoML: leakage-safe evaluation, hyperparameter selection and interactive class presentations.",
+  "classes": [
+    "06",
+    "07",
+    "08",
+    "09"
+  ],
+  "topics": [
+    "machine-learning",
+    "data-science",
+    "cross-validation",
+    "nested-cross-validation",
+    "grid-search",
+    "random-search",
+    "automl",
+    "model-selection"
+  ],
+  "presentations": {
+    "Cross Validation · Interactive": "https://astounding-marzipan-63764d.netlify.app/",
+    "Nested Cross Validation": "https://astonishing-dodol-818e9f.netlify.app/",
+    "Hyperparameter Search · Grid Search": "https://lively-halva-00f14e.netlify.app/",
+    "Random Search and AutoML": "https://taupe-tarsier-591729.netlify.app/"
+  }
+}

@@ -10,7 +10,7 @@
 
 
 
-# <p align="center">   2- [Data Science & AI/ML]() 🎯    ⥅  [Model Validation & Hyperparameter Optimization — Cross-Validation, Nested CV, Grid Search, Random Search & AutoML]()
+# <p align="center">  🎯 2- [Data Science & AI/ML]()     ⥅  [Model Validation & Hyperparameter Optimization — Cross-Validation, Nested CV, Grid Search, Random Search & AutoML]()
 
 
 

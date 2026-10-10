@@ -89,8 +89,7 @@
 
 
 
-
-## Cross-Validation from Rotation to Correct-Schema and Nested Croiss Validation
+## [Cross-Validation from Rotation to Correct-Schema and Nested Croiss Validation]()
 
 
 https://github.com/user-attachments/assets/4097ba66-9586-4e2f-a10e-5f7189d4ed91
@@ -100,7 +99,24 @@ https://github.com/user-attachments/assets/4097ba66-9586-4e2f-a10e-5f7189d4ed91
 
 
 
+<br><br>
 
+## [Hyperparameter Search - Grid Search]()
+
+https://github.com/user-attachments/assets/d1156b3a-fc02-4621-a143-515776d0cc2e
+
+
+### 📺 [You Tube](https://youtu.be/2VMpLJG0waE?si=_NuqqcWUc8kUWWu5)
+
+<br><br>
+
+
+## [Random search and AutoML Optimization]()
+
+https://github.com/user-attachments/assets/79b46aa5-38d9-4ab6-8eca-96a3dc6de0b9
+
+
+### 📺 [You Tube](https://www.youtube.com/watch?v=nOjlIEvL9jg)
 
 
 

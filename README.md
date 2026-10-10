@@ -16,17 +16,13 @@
 
 <br><br>
 
-
-
-<!-- ♡ Sponsor ····· ॐ Mindful AI -->
 <p align="center">
-  <a href="https://github.com/sponsors/Mindful-AI-Research">
-    <img
-      src="https://img.shields.io/badge/Sponsor-%E0%A5%90%20%E2%8B%86%20Mindful%20AI%20%E2%8B%86%20Research%20%26%20Consulting%20%F0%96%A4%90%20%E2%8B%86-3A424C?style=for-the-badge&logo=githubsponsors&logoColor=white&labelColor=07111F"
-      alt="Sponsor ॐ ⋆ Mindful AI ⋆ Research & Consulting 𖤐 ⋆"
-      height="36"
-    >
+  <a href="https://astounding-marzipan-63764d.netlify.app/"><img src="https://img.shields.io/badge/Cross%20Validation%20%C2%B7%20Interactive-0f766e?style=for-the-badge&amp;labelColor=022c22" alt="Cross Validation · Interactive" /></a>
+  <a href="https://astonishing-dodol-818e9f.netlify.app/"><img src="https://img.shields.io/badge/Nested%20Cross%20Validation-134e4a?style=for-the-badge&amp;labelColor=022c22" alt="Nested Cross Validation" /></a>
+  <a href="https://lively-halva-00f14e.netlify.app/"><img src="https://img.shields.io/badge/Hyperparameter%20Search%20%C2%B7%20Grid%20Search-124050?style=for-the-badge&amp;labelColor=022c22" alt="Hyperparameter Search · Grid Search" /></a>
+  <a href="https://taupe-tarsier-591729.netlify.app/"><img src="https://img.shields.io/badge/Random%20Search%20and%20AutoML-14532d?style=for-the-badge&amp;labelColor=022c22" alt="Random Search and AutoML" /></a>
 </p>
+
 
 <br><br>
 
@@ -51,6 +47,18 @@
 <!-- ========= END TEASER ========= -->
 
 
+<!-- ♡ Sponsor ····· ॐ Mindful AI -->
+<p align="center">
+  <a href="https://github.com/sponsors/Mindful-AI-Research">
+    <img
+      src="https://img.shields.io/badge/Sponsor-%E0%A5%90%20%E2%8B%86%20Mindful%20AI%20%E2%8B%86%20Research%20%26%20Consulting%20%F0%96%A4%90%20%E2%8B%86-3A424C?style=for-the-badge&logo=githubsponsors&logoColor=white&labelColor=07111F"
+      alt="Sponsor ॐ ⋆ Mindful AI ⋆ Research & Consulting 𖤐 ⋆"
+      height="36"
+    >
+</p>
+
+
+<br><br>
 
 
 <!-- =========  START PUC HEADER GIF ========= -->

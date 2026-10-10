@@ -99,23 +99,30 @@ https://github.com/user-attachments/assets/4097ba66-9586-4e2f-a10e-5f7189d4ed91
 ### 📺 [You Tube](https://youtu.be/Wc-ysPS2kZE)
 
 
-<br><br>
 
 
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Class-06-0f766e?style=for-the-badge&labelColor=022c22" alt="Class 06" />
-  <img src="https://img.shields.io/badge/Topic-Cross--Validation-134a4a?style=for-the-badge&labelColor=022c22" alt="Cross-Validation" />
-  <img src="https://img.shields.io/badge/Focus-Leakage--Safe%20Evaluation-14532d?style=for-the-badge&labelColor=022c22" alt="Leakage-Safe Evaluation" />
-  <img src="https://img.shields.io/badge/Library-scikit--learn-0f766e?style=for-the-badge&labelColor=022c22" alt="scikit-learn" />
-  <img src="https://img.shields.io/badge/Status-Class%20Material-101f2f?style=for-the-badge&labelColor=022c22" alt="Class Material" />
-</p>
 
-<p align="center">
-  <a href="<ADD_URL_HERE>"><img src="https://img.shields.io/badge/Notebook-Open-134e4a?style=for-the-badge&labelColor=022c22" alt="Notebook" /></a>
-  <a href="<ADD_URL_HERE>"><img src="https://img.shields.io/badge/Slides-Open-123445?style=for-the-badge&labelColor=022c22" alt="Slides" /></a>
-</p>
+
 
 <br><br>
 
+## [Table of Contents]()
+
+1. [Repository Identity](#repository-identity)
+2. [Overview](#overview)
+3. [Source Provenance and Evidence](#source-provenance-and-evidence)
+4. [Learning Path](#learning-path)
+5. [Cross-Validation and Splitter Selection](#cross-validation-and-splitter-selection)
+6. [Nested Cross-Validation](#nested-cross-validation)
+7. [Grid Search and the Music Laboratory](#grid-search-and-the-music-laboratory)
+8. [Random Search and AutoML](#random-search-and-automl)
+9. [Mathematical Foundations](#mathematical-foundations)
+10. [Integrated Conceptual Workflow](#integrated-conceptual-workflow)
+11. [Source-Reported Results](#source-reported-results)
+12. [Reference Implementation and Usage](#reference-implementation-and-usage)
+13. [Repository Contents and Presentation](#repository-contents-and-presentation)
+14. [Limitations and Responsible Practice](#limitations-and-responsible-practice)
+15. [References](#references)
+16. [Conclusion](#conclusion)
 

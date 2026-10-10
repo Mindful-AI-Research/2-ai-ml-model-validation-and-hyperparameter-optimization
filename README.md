@@ -142,3 +142,90 @@ https://github.com/user-attachments/assets/79b46aa5-38d9-4ab6-8eca-96a3dc6de0b9
 15. [References](#references)
 16. [Conclusion](#conclusion)
 
+
+<br><br>
+
+## [Overview]()
+
+This integrated learning repository connects four complementary questions:
+
+1. How should data be split to evaluate a fixed learning workflow? Cross-validation.
+2. How can a tuned workflow be evaluated without reusing the evidence that selected it? Nested CV.
+3. How can hyperparameters be selected systematically in a small space? Grid Search.
+4. How can larger spaces be explored under a controlled budget, and what can be automated? Random Search and AutoML.
+
+The organizing principle is: training learns, validation chooses, and independent evaluation audits that choice. Consolidating the lessons does not merge their datasets or make their scores directly comparable.
+
+<br><br>
+
+## [Source Provenance and Evidence]()
+
+The authoritative materials for this consolidation are the four uploaded READMEs, not newly inspected original PDFs, CSVs, or notebooks. Statements that a notebook implemented or demonstrated something are preserved as source-reported statements, not independently rerun verification.
+
+| Module | Supplied README | Status in this package |
+|---|---|---|
+| Class 06 — Cross-validation | `5-class6README.md` | Original copied into `docs/modules/` |
+| Class 07 — Nested CV | `5-class7README.md` | Original copied; identity inconsistency documented |
+| Class 08 — Grid Search | 35,138-byte `5-README.md` | Curated extract; original unavailable under colliding local filename |
+| Class 09 — Random Search and AutoML | 31,185-byte `5-README.md` | Original copied; code explicitly reference-only |
+
+Two files had the same filename. The extraction system distinguished their source IDs, but the local filesystem exposed only the Class 09 version. The Class 08 module is therefore a reconstruction of extracted content, not an exact archival copy.
+
+Evidence labels:
+
+- Source-reported demonstration: described as executed in a supplied README, not rerun here.
+- Conceptual: explanatory material or architecture.
+- New reference implementation: code written for this integrated repository, not original class code.
+- Recommended / future: a proposed improvement, not an implemented class feature.
+
+All four presentation URLs were supplied by the author. Retrieval failed during preparation; no claim of current availability or frontend technology verification is made.
+
+<br><br>
+
+## [Learning Path]()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>

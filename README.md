@@ -281,6 +281,260 @@ The original workflow uses `pd.get_dummies` before the train/test split. This is
 ## [Random Search and AutoML]()
 
 
+andomizedSearchCV samples configurations rather than exhaustively enumerating a grid. `n_iter` controls the candidate budget; folds still multiply its computational cost.
+
+| Parameter type | Search representation | Example |
+|---|---|---|
+| Integer | SciPy `randint` | Tree depth or minimum leaf samples |
+| Linear continuous | SciPy `uniform` | A bounded fraction; scale means interval width |
+| Positive, orders of magnitude | SciPy `loguniform` | Regularization or learning rate |
+| Categorical | A list | Class weights or algorithm options |
+
+Bayesian optimization uses preceding evaluations to guide subsequent trials; it is conceptual context here. AutoML can automate portions of preprocessing, candidate selection, tuning and ensembling, depending on the tool. No particular AutoML service, production deployment or monitoring platform is established by these source materials.
+
+Automation does not determine target validity, leakage, stakeholder error costs, privacy requirements or fairness. Those remain explicit design responsibilities.
+
+<br><br>
+
+## [Mathematical Foundations]()
+
+For fold scores \(s_1,\ldots,s_K\), use the source notebooks’ population-form dispersion:
+
+\[
+\bar{s}=\frac{1}{K}\sum_{k=1}^{K}s_k,\qquad
+\sigma=\sqrt{\frac{1}{K}\sum_{k=1}^{K}(s_k-\bar{s})^2}.
+\]
+
+For \(G\) grid candidates:
+
+\[
+G=\prod_j m_j,\quad
+N_{\mathrm{grid,CV}}=GK_{\mathrm{inner}},\quad
+N_{\mathrm{nested,CV}}=GK_{\mathrm{inner}}K_{\mathrm{outer}}.
+\]
+
+These count candidate-validation fits only. With refit enabled, each outer search adds one training-partition refit; a separate final search adds its own CV fits and refit. Random search replaces \(G\) by the sampled candidate count.
+
+If a promising region has sampling probability \(p\), independent random trials give:
+
+\[
+P(\text{at least one promising trial})=1-(1-p)^n.
+\]
+
+The quantity is a coverage model, not measured accuracy and not a guarantee of finding an optimum.
+
+Average Precision (AP) summarizes precision at recall increments:
+
+\[
+AP=\sum_n(R_n-R_{n-1})P_n.
+\]
+
+AP is not identical to every trapezoidal precision–recall area implementation. Do not compare AP with accuracy as if they measured the same thing.
+
+<br><br>
+
+## [Integrated Conceptual Workflow]()
+
+```mermaid
+%%{init: {'theme':'base','themeVariables': {'primaryColor':'#101f2f','primaryTextColor':'#ffffff','primaryBorderColor':'#2dd4bf','lineColor':'#2dd4bf'}}}%%
+flowchart TD
+    A[Data structure and prediction objective] --> B[Reserve final test when applicable]
+    B --> C[Choose stratified, grouped or temporal splitter]
+    C --> D[Fold-local preprocessing pipeline]
+    D --> E[Fixed baseline evaluation]
+    D --> F[Inner grid or random search]
+    F --> G[Untouched outer folds: nested evaluation]
+    E --> H[Evidence-aware comparison]
+    G --> H
+    H --> I[Final search and refit on development data]
+    I --> J[One protected final-test evaluation]
+    J --> K[Report metric, uncertainty and provenance]
+    classDef step fill:#123445,stroke:#2dd4bf,color:#ffffff;
+    class A,B,C,D,E,F,G,H,I,J,K step;
+```
+
+This is a conceptual consolidation, not a production architecture or a claim that every class executes every stage.
+
+<br><br>
+
+## [Source-Reported Results]()
+
+| Module | Experiment / metric | Source-reported result | Interpretation |
+|---|---|---|---|
+| 06 | Logistic Regression accuracy, 5-fold | 0.8938 ± 0.0117 | Development estimate in that lab |
+| 06 | Logistic Regression accuracy, 10-fold | 0.8938 ± 0.0286 | Same mean, different observed dispersion |
+| 06 | Repeated stratified accuracy, 50 scores | 0.8944 ± 0.0131 | Repeated fold assignments |
+| 07 | SVC best internal accuracy | 0.8633 | Selection-stage statistic |
+| 07 | Nested outer accuracy | 0.8467 ± 0.0600 | External selection-process audit |
+| 08 | Logistic Regression internal AP | 0.7207 | Search-stage statistic |
+| 08 | Protected test AP / ROC AUC | 0.7116 / 0.9296 | Independent final test in source |
+| 09 | Original reproducible experiment | Not provided | Do not fill in a synthetic class result |
+
+These values are transcribed from the uploaded READMEs and have not been reproduced in this package. Different datasets, models, splits and metrics prevent interpreting this table as a cross-class performance ranking.
+
+Class 07’s 9×5×5=225 fit count excludes outer refits. Class 08’s 10 of 10 candidates within a champion’s one-standard-deviation band is a descriptive plateau, not a significance test or confidence statement.
+
+<br><br>
+
+## [Reference Implementation and Usage]()
+
+The package includes `src/reference_workflow.py`: a newly written educational implementation, not original notebook code. It generates an explicitly synthetic imbalanced binary dataset; numeric synthetic labels are 0/1. It evaluates a fixed logistic baseline, performs nested grid or random search, fits the final search on development data, and evaluates the protected holdout once per execution.
+
+The same dataset makes the two search strategies comparable as a new reference experiment, but these outputs must not be presented as classroom results. Repeatedly using the final holdout to choose the method would violate its protected role.
+
+```bash
+python -m venv .venv
+# macOS / Linux
+source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m src.reference_workflow --method grid
+# Alternative separate demonstration:
+python -m src.reference_workflow --method random
+```
+
+Dependencies are numpy, scipy and scikit-learn. This package does not establish the original classroom environment or pin unverified historical versions. Record the versions from your successful run for reproducibility. No API keys or environment variables are required.
+
+Generated output: `artifacts/grid-reference.json` or `artifacts/random-reference.json`. It contains baseline, internal selection, nested external and holdout scores in separate fields. Python syntax was checked; training was not executed when preparing the package.
+
+Complete copy/paste source follows:
+
+```python
+"""New reference example; synthetic data, not a reproduced classroom experiment."""
+import argparse
+import json
+from pathlib import Path
+import numpy as np
+from scipy.stats import loguniform
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score, roc_auc_score
+from sklearn.model_selection import (GridSearchCV, RandomizedSearchCV,
+    StratifiedKFold, cross_val_score, train_test_split)
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+
+def run(method="grid"):
+    X, y = make_classification(n_samples=600, n_features=12,
+        n_informative=6, n_redundant=2, weights=[0.85, 0.15], random_state=42)
+    X_dev, X_test, y_dev, y_test = train_test_split(
+        X, y, test_size=0.2, stratify=y, random_state=42)
+    pipe = Pipeline([("scale", StandardScaler()),
+        ("model", LogisticRegression(max_iter=2000, random_state=42))])
+    inner = StratifiedKFold(n_splits=4, shuffle=True, random_state=43)
+    outer = StratifiedKFold(n_splits=5, shuffle=True, random_state=44)
+    if method == "grid":
+        search = GridSearchCV(pipe, {"model__C": [0.01, 0.1, 1, 10, 100],
+            "model__class_weight": [None, "balanced"]},
+            scoring="average_precision", cv=inner, n_jobs=1)
+    else:
+        search = RandomizedSearchCV(pipe,
+            {"model__C": loguniform(1e-2, 1e2),
+             "model__class_weight": [None, "balanced"]}, n_iter=20,
+            scoring="average_precision", cv=inner, n_jobs=1, random_state=42)
+    baseline = cross_val_score(pipe, X_dev, y_dev,
+        cv=outer, scoring="average_precision", n_jobs=1)
+    nested = cross_val_score(search, X_dev, y_dev,
+        cv=outer, scoring="average_precision", n_jobs=1)
+    search.fit(X_dev, y_dev)
+    scores = search.best_estimator_.predict_proba(X_test)[:, 1]
+    report = {
+        "status": "new reference experiment on synthetic data",
+        "method": method,
+        "baseline_cv_ap_mean": float(np.mean(baseline)),
+        "baseline_cv_ap_std_ddof0": float(np.std(baseline)),
+        "nested_cv_ap_mean": float(np.mean(nested)),
+        "nested_cv_ap_std_ddof0": float(np.std(nested)),
+        "nested_outer_scores": nested.tolist(),
+        "best_internal_cv_ap": float(search.best_score_),
+        "best_params": search.best_params_,
+        "holdout_ap": float(average_precision_score(y_test, scores)),
+        "holdout_roc_auc": float(roc_auc_score(y_test, scores)),
+    }
+    output = Path("artifacts")
+    output.mkdir(exist_ok=True)
+    (output / f"{method}-reference.json").write_text(
+        json.dumps(report, indent=2), encoding="utf-8")
+    print(json.dumps(report, indent=2))
+    return report
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--method", choices=["grid", "random"], default="grid")
+    run(parser.parse_args().method)
+```
+
+<br><br>
+
+## [Repository Contents and Presentation]()
+
+```text
+ai-ml-model-validation-and-hyperparameter-optimization/
+├── README.md
+├── README_MASTER.md
+├── requirements.txt
+├── .gitignore
+├── repository-metadata.json
+├── docs/modules/
+│   ├── class-06-cross-validation.md
+│   ├── class-07-nested-cv.md
+│   ├── class-08-grid-search.md
+│   └── class-09-random-search-automl.md
+├── src/
+│   ├── __init__.py
+│   └── reference_workflow.py
+└── presentation/
+    └── index.html
+```
+
+The new bilingual presentation is a single HTML file with embedded slide data and a no-dependency fallback. It attempts to load React from a CDN using plain JavaScript and `React.createElement`, not untranspiled JSX. When React cannot load, the native-JavaScript fallback still renders the content and controls. React mode requires internet; offline mode is explicitly not React.
+
+Controls: keyboard arrows/space, Home, language toggle, theme toggle, SVG home/fullscreen controls, swipe, and clickable slide progress indicators. No fabricated PowerPoint download is provided. If a preview environment blocks JavaScript, open the downloaded file in a normal browser. External presentation links remain separate resources, not copied deployments.
+
+<br><br>
+
+## [Limitations and Responsible Practice]()
+
+- Original PDFs, CSVs and notebooks were not supplied for this consolidation; source-reported results cannot be independently reproduced from those artifacts here.
+- Dataset provenance, collection permissions, licensing and feature dictionaries remain unknown where the source does not provide them.
+- Nested CV increases computational cost and cannot repair wrong splitters, target leakage, or an already-used final test set.
+- Group and temporal validation must match the actual prediction scenario; stratification alone does not enforce those boundaries.
+- Inspect variability and computational cost before selecting an apparently superior champion.
+- New deployment, registry, explainability, fairness checks, experiment tracking and retraining governance are recommended future work, not existing class implementations.
+- No code from the original source is silently reclassified as tested production software; source module files are retained for audit, including their original inconsistencies.
+
+Recommended tests: group disjointness, chronological order, fold-local transformer fitting, label validity, minimum class counts, output schema, and end-to-end reference workflow execution. These tests are not claimed as implemented in this package.
+
+<br><br>
+
+## [References]()
+
+Primary sources: the four module READMEs supplied for Classes 06–09. Source files and the Class 08 reconstruction are linked in Learning Path.
+
+Supporting documentation:
+
+- [scikit-learn: cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html)
+- [scikit-learn: GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+- [scikit-learn: RandomizedSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html)
+- [scikit-learn: Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
+- [scikit-learn: Average Precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)
+- Bergstra, J. & Bengio, Y. (2012). [Random Search for Hyper-Parameter Optimization](https://jmlr.org/papers/v13/bergstra12a.html). JMLR 13, 281–305.
+
+Documentation links are contextual references, not evidence that an original class environment was reproduced.
+
+<br><br>
+
+## [Conclusion]()
+
+The four lessons establish a coherent progression from evaluating a fixed pipeline to auditing and optimizing a complete model-selection procedure. Correct splitters protect the intended prediction scenario; nested evaluation separates choosing from measuring; grid and random search allocate compute differently; AutoML accelerates portions of experimentation without removing scientific responsibility.
+
+This package implements documentation consolidation, a source-aware bilingual presentation, and a new synthetic reference workflow. Reproducing the original labs requires the original datasets and notebooks, which should be added with provenance and environment records before claiming verified classroom reproduction.
+
+<br><br>
+
+<p align="center"><a href="https://github.com/Mindful-AI-Research"><img src="https://img.shields.io/badge/GitHub-Mindful%20AI%20Research%20%26%20Consulting-07111F?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=022c22" alt="Mindful AI Research & Consulting" height="36" /></a></p>
 
 
 

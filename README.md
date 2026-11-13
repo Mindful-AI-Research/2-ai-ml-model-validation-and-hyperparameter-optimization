@@ -536,49 +536,6 @@ This package implements documentation consolidation, a source-aware bilingual pr
 
 <p align="center"><a href="https://github.com/Mindful-AI-Research"><img src="https://img.shields.io/badge/GitHub-Mindful%20AI%20Research%20%26%20Consulting-07111F?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=022c22" alt="Mindful AI Research & Consulting" height="36" /></a></p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
 <br><br>
 
 #### <p align="center">  🛸๋ My Contacts [Hub](https://linktr.ee/fabianacampanari)
